@@ -23,7 +23,7 @@ class RabbitMQConnection:
                 )
             )
 
-            return self._connection
+        return self._connection
 
     def get_channel(self) -> BlockingChannel:
         if self._connection is None or self._connection.is_closed: 
@@ -34,7 +34,7 @@ class RabbitMQConnection:
             return self._connection.channel()
 
     def close(self) -> None: 
-        if self._connection is not None or self._connection.is_open: 
+        if self._connection is not None and self._connection.is_open: 
             self._connection.close()
 
         self._connection = None
